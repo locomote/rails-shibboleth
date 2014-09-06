@@ -1,3 +1,11 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :twitter, Rails.application.secrets.omniauth_provider_key, Rails.application.secrets.omniauth_provider_secret
+  provider :shibboleth, {
+    :shib_session_id_field     => "Shib-Session-ID",
+    :shib_application_id_field => "Shib-Application-ID",
+    :debug                     => false,
+    :extra_fields => [
+      :"unscoped-affiliation",
+      :entitlement
+    ]
+  }
 end

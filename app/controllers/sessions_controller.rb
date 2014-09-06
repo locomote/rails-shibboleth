@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
+  skip_before_filter :verify_authenticity_token
 
   def new
-    redirect_to '/auth/twitter'
+    redirect_to '/auth/shibboleth'
   end
 
   def create
@@ -21,5 +22,4 @@ class SessionsController < ApplicationController
   def failure
     redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
   end
-
 end
